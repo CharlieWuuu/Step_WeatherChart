@@ -3,7 +3,8 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/WeatherChart">WeatherChart</router-link> |
-    <router-link to="/WeatherTable">WeatherTable</router-link>
+    <router-link to="/WeatherTable">WeatherTable</router-link> |
+    <router-link to="/Map">Map</router-link>
   </nav>
   <router-view />
 </template>

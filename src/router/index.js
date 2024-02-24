@@ -26,6 +26,11 @@ const routes = [
     name: "WeatherTable",
     component: () => import("../views/WeatherTableView.vue"),
   },
+  {
+    path: "/Map",
+    name: "Map",
+    component: () => import("../views/MapView.vue"),
+  },
 ];
 
 const router = createRouter({
