@@ -8,28 +8,44 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: 'about' */ "../views/AboutView.vue"),
+    path: "/Step1",
+    name: "Step1",
+    component: () => import("../views/Step1.vue"),
   },
   {
-    path: "/WeatherChart",
-    name: "WeatherChart",
-    component: () => import("../views/WeatherChartView.vue"),
+    path: "/Step2",
+    name: "Step2",
+    component: () => import("../views/Step2.vue"),
   },
   {
-    path: "/WeatherTable",
-    name: "WeatherTable",
-    component: () => import("../views/WeatherTableView.vue"),
+    path: "/Step3",
+    name: "Step3",
+    component: () => import("../views/Step3.vue"),
   },
   {
-    path: "/Map",
-    name: "Map",
-    component: () => import("../views/MapView.vue"),
+    path: "/Step4",
+    name: "Step4",
+    component: () => import("../views/Step4.vue"),
+  },
+  {
+    path: "/Step5",
+    name: "Step5",
+    component: () => import("../views/Step5.vue"),
+  },
+  {
+    path: "/Step6",
+    name: "Step6",
+    component: () => import("../views/Step6.vue"),
+  },
+  {
+    path: "/Step7",
+    name: "Step7",
+    component: () => import("../views/Step7.vue"),
+  },
+  {
+    path: "/Step8",
+    name: "Step8",
+    component: () => import("../views/Step8.vue"),
   },
 ];
 

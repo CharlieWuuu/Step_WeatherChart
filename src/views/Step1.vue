@@ -1,7 +1,8 @@
 <template>
   <div class="WeatherTable">
-    <h1>This is a Weather Table page</h1>
-    <p>{{ location }}</p>
+    <h1>1. 取得使用者經緯度</h1>
+    <p>經度：{{ lon }}、緯度：{{ lat }}</p>
+    <p>地號：{{ location }}</p>
   </div>
 </template>
 
@@ -24,9 +25,9 @@ export default {
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((pos) => {
-          lat = pos.coords.latitude;
-          lon = pos.coords.longitude;
-          this.getLocation_ZH(lat, lon);
+          this.lat = pos.coords.latitude;
+          this.lon = pos.coords.longitude;
+          this.getLocation_ZH(this.lat, this.lon);
         });
       } else {
         this.getLocation_ZH(lat, lon);
