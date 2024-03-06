@@ -8,7 +8,7 @@
     <router-link to="/Step5">5. 串接資料與圖表</router-link>
     <router-link to="/Step6">6. 氣候圖印成表格</router-link>
     <router-link to="/Step7">7. 印出氣象站清單</router-link>
-    <router-link to="/Step8">8. 印出氣象站清單</router-link>
+    <router-link to="/Step8">8. 印出氣象站地圖</router-link>
   </nav>
   <div class="page">
     <router-view />
