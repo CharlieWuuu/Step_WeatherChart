@@ -1,6 +1,7 @@
 <template>
   <h1>5. 串接資料與圖表</h1>
   <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
+  <p>串資料失敗，也許可參考<a href="https://vue-chartjs.org/guide/#chart-with-api-data">這篇文件</a></p>
 </template>
 
 <script>
