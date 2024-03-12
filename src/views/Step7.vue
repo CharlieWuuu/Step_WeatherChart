@@ -1,27 +1,27 @@
 <template>
   <h1>5. 串接資料與圖表</h1>
-  <button v-on:click="updateData()">更新資料</button>
-  <select
-    v-model="selectedStationIndex"
-    v-on:change="getClimateData(selectedStationIndex)"
-  >
-    <option v-for="(station, index) in Stations" :value="index">
-      {{ station.station.StationName }}
-    </option>
-  </select>
-
-  <Bar
-    v-if="loaded"
-    id="my-chart-id"
-    :data="chartData"
-    :options="chartOptions"
-  />
-  <p>
-    串資料失敗，也許可參考<a
-      href="https://vue-chartjs.org/guide/#chart-with-api-data"
-      >這篇文件</a
+  <div class="select_container">
+    <p>觀測站：</p>
+    <select
+      v-model="selectedStationIndex"
+      v-on:change="getClimateData(selectedStationIndex)"
     >
-  </p>
+      <option v-for="(station, index) in Stations" :value="index">
+        {{ station.station.StationName }}
+      </option>
+    </select>
+    <p>
+      {{
+        Stations_Name == "玉山"
+          ? "高地氣候"
+          : chartData.datasets[1].data[0] < 18
+          ? "副熱帶季風"
+          : "熱帶季風"
+      }}
+    </p>
+  </div>
+
+  <Bar v-if="loaded" class="Chart" :data="chartData" :options="chartOptions" />
 </template>
 
 <script>
@@ -55,6 +55,7 @@ ChartJS.register(
 export default {
   name: "BarChart",
   components: { Bar },
+
   data: () => ({
     selectedStationIndex: 0,
     loaded: false,
@@ -87,17 +88,17 @@ export default {
         left: {
           position: "left",
           suggestedMin: 0,
-          suggestedMax: 200,
+          suggestedMax: 1000,
           ticks: {
-            stepSize: 20,
+            stepSize: 100,
           },
         },
         right: {
           position: "right",
-          suggestedMin: 0,
+          suggestedMin: -10,
           suggestedMax: 40,
           ticks: {
-            stepSize: 8,
+            stepSize: 10,
           },
         },
       },
@@ -106,8 +107,7 @@ export default {
   }),
   async mounted() {
     try {
-      await this.getClimateData(0);
-      this.loaded = true; // 在數據加載後設置為true
+      await this.getClimateData(22);
     } catch (e) {
       console.error(e);
     }
@@ -115,6 +115,7 @@ export default {
 
   methods: {
     async getClimateData(i) {
+      this.loaded = false;
       const response = await fetch(
         "https://opendata.cwa.gov.tw/api/v1/rest/datastore/C-B0027-001?Authorization=CWB-C67AAE13-37AA-4F9D-892F-E25483690887"
       );
@@ -130,7 +131,7 @@ export default {
       const station = targetData.station;
       const stationObsStatistics = targetData.stationObsStatistics;
       const stationsName = station.StationName;
-      this.Stations.Name = stationsName;
+      this.Stations_Name = stationsName;
 
       const Precipitation_Arr = stationObsStatistics.Precipitation.monthly.map(
         (element) => parseFloat(element.Accumulation)
@@ -142,21 +143,25 @@ export default {
           parseFloat(element.Mean)
         );
       this.chartData.datasets[1].data = AirTemperature_Arr;
-    },
-    updateData() {
-      console.log(123);
-      // 更新資料
-      this.chartData.datasets[0].data = [
-        Math.random() * 20,
-        Math.random() * 20,
-        Math.random() * 20,
-        Math.random() * 20,
-        Math.random() * 20,
-        Math.random() * 20,
-      ];
-      // 強制重新渲染圖表
-      this.chartKey += 1;
+      console.log(targetData);
+      this.loaded = true; // 在數據加載後設置為true
     },
   },
 };
 </script>
+
+<style lang="scss">
+.select_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  p {
+    font-size: 20px;
+  }
+  select {
+    border: none;
+    font-size: 20px;
+  }
+}
+</style>

@@ -17,11 +17,13 @@
 
 <style lang="scss">
 * {
-  box-shadow: inset 0 0 1px 0 #000;
+  // box-shadow: inset 0 0 1px 0 #000;
+  font-family: Arial, Helvetica, sans-serif;
 }
 body {
   margin: 0;
   padding: 0;
+  max-width: 100%;
 }
 #app {
   height: 100vh;
@@ -32,9 +34,11 @@ body {
     display: flex;
     flex-direction: column;
     a {
-      font-weight: bold;
       color: #2c3e50;
       text-wrap: nowrap;
+      font-size: 12px;
+      padding-top: 8px;
+      text-decoration: none;
 
       &.router-link-exact-active {
         color: #42b983;
@@ -44,6 +48,10 @@ body {
   .page {
     flex-grow: 1;
     padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     h1 {
       margin: 0;
     }
