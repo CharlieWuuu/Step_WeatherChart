@@ -20,8 +20,18 @@
       }}
     </p>
   </div>
-
-  <Bar v-if="loaded" class="Chart" :data="chartData" :options="chartOptions" />
+  <div
+    class="chart-container"
+    style="position: relative; width: 350px; height: 500px"
+  >
+    <Bar
+      v-if="loaded"
+      class="Chart"
+      :data="chartData"
+      :options="chartOptions"
+      style="width: 100%; height: 100%"
+    />
+  </div>
 </template>
 
 <script>

@@ -26,8 +26,6 @@ body {
   max-width: 100%;
 }
 #app {
-  height: 100vh;
-  max-height: 100vh;
   display: flex;
   nav {
     padding: 20px;
